@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>다낭 날씨</title>
+  </head>
+  <body>
+    <h1>다낭시</h1>
+    <h2>현재 날씨</h2>
+    <h3>날씨 설명:</h3>
+    <h3>습도: <span id="hum"></span></h3>
+    <h3>풍속: <span id="ctemp"></span></h3>
+
+    <script>
+      const
+
+      fetch(
+        "https://api.openweathermap.org/data/2.5/weather?id=1583992&appid=2dc5905fa91aee8b68116ebb3cc0f3b7&units=metric",
+      )
+        .then(res => res.json())
+        .then(result => {
+          console.log(result);
+          console.log(result.main.temp);
+          console.log(result.weather[0].icon); //04d
+          let imgURL = `https://openweathermap.org/payload/api/media/file/${result.weather[0].icon}.png`;
+          ctemp.innerText = result.main.temp;
+          chum.innerText = result.main.humidity;
+          icon.setAttribute("src", imgURL);
+        });
+    </script>
+  </body>
+</html>
